@@ -83,28 +83,6 @@ body{
   height:16px;
 }
 
-/* bandeiras */
-.flags{
-  margin-top:10px;
-  display:flex;
-  justify-content:center;
-  gap:10px;
-}
-
-.flag{
-  width:24px;
-  height:18px;
-  cursor:pointer;
-  border:2px solid transparent;
-  border-radius:4px;
-  transition:0.3s;
-}
-
-.flag:hover{
-  transform:scale(1.2);
-  border-color:#00ff9d;
-}
-
 /* terminal */
 .code{
   margin-top:20px;
@@ -148,6 +126,53 @@ footer{
   opacity:0.7;
 }
 
+/* botão de idioma flutuante */
+.language-menu {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  z-index: 10;
+}
+
+#lang-btn {
+  background:#00ff9d;
+  border:none;
+  padding:8px 12px;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:16px;
+  color:#0f2027;
+  transition:0.3s;
+}
+
+#lang-btn:hover {
+  transform:scale(1.1);
+}
+
+.lang-options {
+  display:none;
+  position:absolute;
+  right:0;
+  top:40px;
+  background:rgba(0,0,0,0.8);
+  border-radius:6px;
+  overflow:hidden;
+  text-align:left;
+}
+
+.lang-options span {
+  display:block;
+  padding:8px 12px;
+  cursor:pointer;
+  color:#00ff9d;
+  transition:0.3s;
+}
+
+.lang-options span:hover {
+  background:#00ff9d;
+  color:#0f2027;
+}
+
 /* modo claro */
 @media (prefers-color-scheme: light){
   body{
@@ -169,8 +194,19 @@ footer{
     background:#ffffff;
     color:#1b5e20;
   }
-  .flag:hover{
-    border-color:#2e7d32;
+  #lang-btn{
+    background:#2e7d32;
+    color:white;
+  }
+  .lang-options{
+    background:rgba(255,255,255,0.9);
+  }
+  .lang-options span{
+    color:#2e7d32;
+  }
+  .lang-options span:hover{
+    background:#2e7d32;
+    color:white;
   }
 }
 </style>
@@ -179,6 +215,17 @@ footer{
 <body>
 
 <canvas id="particles"></canvas>
+
+<!-- botão flutuante de idiomas -->
+<div class="language-menu">
+  <button id="lang-btn">🌐</button>
+  <div class="lang-options">
+    <span data-lang="pt">PT🇧🇷</span>
+    <span data-lang="en">EN🇺🇸</span>
+    <span data-lang="es">EP🇪🇸</span>
+    <span data-lang="it">IT🇮🇹</span>
+  </div>
+</div>
 
 <div class="container">
 
@@ -193,14 +240,6 @@ footer{
     <svg class="verificado" viewBox="0 0 40 40" fill="#00ff9d">
       <path d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Zm7.415 11.225 2.254 2.287-11.43 11.5-6.835-6.93 2.244-2.258 4.587 4.581 9.18-9.18Z"/>
     </svg>
-  </div>
-
-  <!-- bandeiras de idiomas -->
-  <div class="flags">
-    <img src="https://flagcdn.com/24x18/br.png" alt="Português" data-lang="pt" class="flag">
-    <img src="https://flagcdn.com/24x18/us.png" alt="English" data-lang="en" class="flag">
-    <img src="https://flagcdn.com/24x18/es.png" alt="Español" data-lang="es" class="flag">
-    <img src="https://flagcdn.com/24x18/it.png" alt="Italiano" data-lang="it" class="flag">
   </div>
 
   <div class="code" id="terminal"></div>
@@ -221,74 +260,54 @@ const textos = {
   pt: {
     nome: "Gustavo Antunes",
     usuario: "@eo._.guh",
-    terminalClaro: `function startDay(){
-    drinkCoffee();
-    writeCode();
-}`,
-    terminalEscuro: `while(coffee != "empty"){
-    code();
-}`,
+    terminalClaro: `function startDay(){\n    drinkCoffee();\n    writeCode();\n}`,
+    terminalEscuro: `while(coffee != "empty"){\n    code();\n}`,
     contato: "CONTATO",
     email: "E-MAIL",
     curriculo: "CURRÍCULO",
     footer: "feito com ☕ e código",
-    linkContato: "https://wa.me/5549999862424?text=Olá!%20Tudo%20bem?%0AEncontrei%20seu%20site%20e%20achei%20muito%20interessante.%20Estou%20procurando%20algo%20parecido%20e%20queria%20saber%20se%20você%20teria%20interesse%20em%20criar%20algo%20semelhante.%0A%0ASe%20puder,%20me%20passe%20mais%20informações.%20Obrigado!",
-    linkEmail: "mailto:gus.tavooficial.mid1@gmail.com?subject=Interesse%20em%20site&body=Olá!%20Tudo%20bem?%0AEncontrei%20seu%20site%20e%20achei%20muito%20interessante.%20Estou%20procurando%20algo%20parecido%20e%20queria%20saber%20se%20você%20teria%20interesse%20em%20criar%20algo%20semelhante.%0A%0ASe%20puder,%20me%20passe%20mais%20informações.%20Obrigado!",
-    linkCurriculo: "https://docs.google.com/spreadsheets/d/16Q0_4KrR_O6UzXJPJP_euCNKXkdL1xR8/edit?usp=drivesdk&ouid=115964333092820179734&rtpof=true&sd=true"
+    linkContato: "https://wa.me/5549999862424?text=Olá!%20Tudo%20bem?%0AEncontrei%20seu%20site%20e%20achei%20muito%20interessante.%20Estou%20procurando%20algo%20parecido.%0ASe%20puder,%20me%20passe%20mais%20informações.%20Obrigado!",
+    linkEmail: "mailto:gus.tavooficial.mid1@gmail.com?subject=Interesse%20em%20site&body=Olá!%20Tudo%20bem?%0AEncontrei%20seu%20site%20e%20achei%20muito%20interessante.%0ASe%20puder,%20me%20passe%20mais%20informações.%20Obrigado!",
+    linkCurriculo: "https://docs.google.com/spreadsheets/d/16Q0_4KrR_O6UzXJPJP_euCNKXkdL1xR8/edit?usp=drivesdk"
   },
   en: {
     nome: "Gustavo Antunes",
     usuario: "@eo._.guh",
-    terminalClaro: `function startDay(){
-    drinkCoffee();
-    writeCode();
-}`,
-    terminalEscuro: `while(coffee != "empty"){
-    code();
-}`,
+    terminalClaro: `function startDay(){\n    drinkCoffee();\n    writeCode();\n}`,
+    terminalEscuro: `while(coffee != "empty"){\n    code();\n}`,
     contato: "CONTACT",
     email: "E-MAIL",
     curriculo: "RESUME",
     footer: "made with ☕ and code",
-    linkContato: "https://wa.me/5549999862424?text=Hi!%20How%20are%20you?%0AI%20found%20your%20website%20and%20found%20it%20very%20interesting.%20I%20am%20looking%20for%20something%20similar%20and%20I%20would%20like%20to%20know%20if%20you%20would%20be%20interested%20in%20creating%20something%20similar.%0A%0ACould%20you%20please%20send%20me%20more%20information?%20Thank%20you!",
-    linkEmail: "mailto:gus.tavooficial.mid1@gmail.com?subject=Interested%20in%20website&body=Hi!%20How%20are%20you?%0AI%20found%20your%20website%20and%20found%20it%20very%20interesting.%20I%20am%20looking%20for%20something%20similar%20and%20I%20would%20like%20to%20know%20if%20you%20would%20be%20interested%20in%20creating%20something%20similar.%0A%0ACould%20you%20please%20send%20me%20more%20information?%20Thank%20you!",
-    linkCurriculo: "https://docs.google.com/spreadsheets/d/16Q0_4KrR_O6UzXJPJP_euCNKXkdL1xR8/edit?usp=drivesdk&ouid=115964333092820179734&rtpof=true&sd=true"
+    linkContato: "https://wa.me/5549999862424?text=Hi!%20How%20are%20you?%0AI%20found%20your%20website.%0ACould%20you%20please%20send%20me%20more%20information?",
+    linkEmail: "mailto:gus.tavooficial.mid1@gmail.com?subject=Interested%20in%20website&body=Hi!%20How%20are%20you?%0AI%20found%20your%20website.%0ACould%20you%20please%20send%20me%20more%20information?",
+    linkCurriculo: "https://docs.google.com/spreadsheets/d/16Q0_4KrR_O6UzXJPJP_euCNKXkdL1xR8/edit?usp=drivesdk"
   },
   es: {
     nome: "Gustavo Antunes",
     usuario: "@eo._.guh",
-    terminalClaro: `function startDay(){
-    tomarCafe();
-    escribirCodigo();
-}`,
-    terminalEscuro: `while(cafe != "vacio"){
-    codigo();
-}`,
+    terminalClaro: `function startDay(){\n    tomarCafe();\n    escribirCodigo();\n}`,
+    terminalEscuro: `while(cafe != "vacio"){\n    codigo();\n}`,
     contato: "CONTACTO",
     email: "CORREO",
     curriculo: "CURRÍCULO",
     footer: "hecho con ☕ y código",
-    linkContato: "https://wa.me/5549999862424?text=¡Hola!%20¿Cómo%20estás?%0AEncontré%20tu%20sitio%20web%20y%20me%20pareció%20muy%20interesante.%20Estoy%20buscando%20algo%20similar%20y%20quisiera%20saber%20si%20estarías%20interesado%20en%20crear%20algo%20similar.%0A%0A¿Podrías%20enviarme%20más%20información?%20Gracias!",
-    linkEmail: "mailto:gus.tavooficial.mid1@gmail.com?subject=Interesado%20en%20sitio&body=¡Hola!%20¿Cómo%20estás?%0AEncontré%20tu%20sitio%20web%20y%20me%20pareció%20muy%20interesante.%20Estoy%20buscando%20algo%20similar%20y%20quisiera%20saber%20si%20estarías%20interesado%20en%20crear%20algo%20similar.%0A%0A¿Podrías%20enviarme%20más%20información?%20Gracias!",
-    linkCurriculo: "https://docs.google.com/spreadsheets/d/16Q0_4KrR_O6UzXJPJP_euCNKXkdL1xR8/edit?usp=drivesdk&ouid=115964333092820179734&rtpof=true&sd=true"
+    linkContato: "https://wa.me/5549999862424?text=¡Hola!%20¿Cómo%20estás?%0AEncontré%20tu%20sitio%20web.%0A¿Podrías%20enviarme%20más%20información?",
+    linkEmail: "mailto:gus.tavooficial.mid1@gmail.com?subject=Interesado%20en%20sitio&body=¡Hola!%20¿Cómo%20estás?%0AEncontré%20tu%20sitio%20web.%0A¿Podrías%20enviarme%20más%20información?",
+    linkCurriculo: "https://docs.google.com/spreadsheets/d/16Q0_4KrR_O6UzXJPJP_euCNKXkdL1xR8/edit?usp=drivesdk"
   },
   it: {
     nome: "Gustavo Antunes",
     usuario: "@eo._.guh",
-    terminalClaro: `function startDay(){
-    prendiCaffe();
-    scriviCodice();
-}`,
-    terminalEscuro: `while(caffe != "vuoto"){
-    codice();
-}`,
+    terminalClaro: `function startDay(){\n    prendiCaffe();\n    scriviCodice();\n}`,
+    terminalEscuro: `while(caffe != "vuoto"){\n    codice();\n}`,
     contato: "CONTATTO",
     email: "E-MAIL",
     curriculo: "CURRICULUM",
     footer: "fatto con ☕ e codice",
-    linkContato: "https://wa.me/5549999862424?text=Ciao!%20Come%20stai?%0AHo%20trovato%20il%20tuo%20sito%20web%20e%20l'ho%20trovato%20molto%20interessante.%20Sto%20cercando%20qualcosa%20di%20simile%20e%20volevo%20sapere%20se%20saresti%20interessato%20a%20creare%20qualcosa%20di%20simile.%0A%0APotresti%20inviarmi%20più%20informazioni?%20Grazie!",
-    linkEmail: "mailto:gus.tavooficial.mid1@gmail.com?subject=Interesse%20in%20sito&body=Ciao!%20Come%20stai?%0AHo%20trovato%20il%20tuo%20sito%20web%20e%20l'ho%20trovato%20molto%20interessante.%20Sto%20cercando%20qualcosa%20di%20simile%20e%20volevo%20sapere%20se%20saresti%20interessato%20a%20creare%20qualcosa%20di%20simile.%0A%0APotresti%20inviarmi%20più%20informazioni?%20Grazie!",
-    linkCurriculo: "https://docs.google.com/spreadsheets/d/16Q0_4KrR_O6UzXJPJP_euCNKXkdL1xR8/edit?usp=drivesdk&ouid=115964333092820179734&rtpof=true&sd=true"
+    linkContato: "https://wa.me/5549999862424?text=Ciao!%20Come%20stai?%0AHo%20trovato%20il%20tuo%20sito%20web.%0APotresti%20inviarmi%20più%20informazioni?",
+    linkEmail: "mailto:gus.tavooficial.mid1@gmail.com?subject=Interesse%20in%20sito&body=Ciao!%20Come%20stai?%0AHo%20trovato%20il%20tuo%20sito%20web.%0APotresti%20inviarmi%20più%20informazioni?",
+    linkCurriculo: "https://docs.google.com/spreadsheets/d/16Q0_4KrR_O6UzXJPJP_euCNKXkdL1xR8/edit?usp=drivesdk"
   }
 };
 
@@ -326,12 +345,27 @@ function atualizarIdioma(lang){
   digitar(textoTerminal);
 }
 
-/* clique nas bandeiras */
-document.querySelectorAll(".flag").forEach(flag => {
-  flag.addEventListener("click", () => {
-    const lang = flag.getAttribute("data-lang");
+/* botão idioma flutuante */
+const langBtn = document.getElementById("lang-btn");
+const langOptions = document.querySelector(".lang-options");
+
+langBtn.addEventListener("click", ()=>{
+  langOptions.style.display = langOptions.style.display === "block" ? "none" : "block";
+});
+
+document.querySelectorAll(".lang-options span").forEach(option=>{
+  option.addEventListener("click", ()=>{
+    const lang = option.getAttribute("data-lang");
     atualizarIdioma(lang);
+    langOptions.style.display = "none";
   });
+});
+
+// fecha menu se clicar fora
+window.addEventListener("click", (e)=>{
+  if(!langBtn.contains(e.target) && !langOptions.contains(e.target)){
+    langOptions.style.display = "none";
+  }
 });
 
 /* detectar mudança de tema */
