@@ -4,7 +4,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Gustavo Antunes | Dev</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
@@ -151,10 +150,57 @@ footer{margin-top:20px;font-size:12px;opacity:0.7;}
 
 <script>
 const textos = {
-  pt:{nome:"Gustavo Antunes",usuario:"@eo._.guh",terminal:`while(coffee!="empty"){ code(); }`,contato:"CONTATO",email:"E-MAIL",curriculo:"CURRÍCULO",footer:"feito com ☕ e código",linkContato:"https://wa.me/5549999862424",linkEmail:"mailto:gus.tavooficial.mid1@gmail.com",linkCurriculo:"#"},
-  en:{nome:"Gustavo Antunes",usuario:"@eo._.guh",terminal:`while(coffee!="empty"){ code(); }`,contato:"CONTACT",email:"E-MAIL",curriculo:"RESUME",footer:"made with ☕ and code",linkContato:"https://wa.me/5549999862424",linkEmail:"mailto:gus.tavooficial.mid1@gmail.com",linkCurriculo:"#"},
-  es:{nome:"Gustavo Antunes",usuario:"@eo._.guh",terminal:`while(cafe!="vacio"){ codigo(); }`,contato:"CONTACTO",email:"CORREO",curriculo:"CURRÍCULO",footer:"hecho con ☕ y código",linkContato:"https://wa.me/5549999862424",linkEmail:"mailto:gus.tavooficial.mid1@gmail.com",linkCurriculo:"#"},
-  it:{nome:"Gustavo Antunes",usuario:"@eo._.guh",terminal:`while(caffe!="vuoto"){ codice(); }`,contato:"CONTATTO",email:"E-MAIL",curriculo:"CURRICULUM",footer:"fatto con ☕ e codice",linkContato:"https://wa.me/5549999862424",linkEmail:"mailto:gus.tavooficial.mid1@gmail.com",linkCurriculo:"#"}
+  pt:{
+    nome:"Gustavo Antunes",
+    usuario:"@eo._.guh",
+    terminal:`while(coffee!="empty"){ code(); }`,
+    contato:"CONTATO",
+    email:"E-MAIL",
+    curriculo:"CURRÍCULO",
+    footer:"feito com ☕ e código",
+    linkContato:"https://wa.me/5549999862424",
+    linkEmail:"mailto:gus.tavooficial.mid1@gmail.com",
+    linkCurriculo:"https://docs.google.com/spreadsheets/d/16Q0_4KrR_O6UzXJPJP_euCNKXkdL1xR8/edit?usp=drivesdk"
+  },
+
+  en:{
+    nome:"Gustavo Antunes",
+    usuario:"@eo._.guh",
+    terminal:`while(coffee!="empty"){ code(); }`,
+    contato:"CONTACT",
+    email:"E-MAIL",
+    curriculo:"RESUME",
+    footer:"made with ☕ and code",
+    linkContato:"https://wa.me/5549999862424",
+    linkEmail:"mailto:gus.tavooficial.mid1@gmail.com",
+    linkCurriculo:"https://docs.google.com/spreadsheets/d/1y8n-6WMZa6lXcsRFvdxD948oPh33GGJc/edit?usp=drivesdk"
+  },
+
+  es:{
+    nome:"Gustavo Antunes",
+    usuario:"@eo._.guh",
+    terminal:`while(cafe!="vacio"){ codigo(); }`,
+    contato:"CONTACTO",
+    email:"CORREO",
+    curriculo:"CURRÍCULO",
+    footer:"hecho con ☕ y código",
+    linkContato:"https://wa.me/5549999862424",
+    linkEmail:"mailto:gus.tavooficial.mid1@gmail.com",
+    linkCurriculo:"https://docs.google.com/spreadsheets/d/1-U6JNrA7wHtAKHYdhDRJTL7X-lWJsMPe/edit?usp=drivesdk"
+  },
+
+  it:{
+    nome:"Gustavo Antunes",
+    usuario:"@eo._.guh",
+    terminal:`while(caffe!="vuoto"){ codice(); }`,
+    contato:"CONTATTO",
+    email:"E-MAIL",
+    curriculo:"CURRICULUM",
+    footer:"fatto con ☕ e codice",
+    linkContato:"https://wa.me/5549999862424",
+    linkEmail:"mailto:gus.tavooficial.mid1@gmail.com",
+    linkCurriculo:"https://docs.google.com/spreadsheets/d/1wkE_kWnc-aH_AyrvApz4uxgxs29IjzeD/edit?usp=drivesdk"
+  }
 };
 
 function digitar(t){
@@ -169,7 +215,7 @@ function digitar(t){
 }
 
 function atualizarIdioma(lang){
-  const t = textos[lang] || textos["pt"]; // proteção
+  const t = textos[lang] || textos["pt"];
 
   nome.innerText=t.nome;
   usuario.innerText=t.usuario;
