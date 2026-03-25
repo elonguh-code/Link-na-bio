@@ -10,12 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Fira Code', monospace;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Fira Code', monospace;}
 
 body{
   height:100vh;
@@ -47,36 +42,14 @@ body{
 }
 
 .foto img{
-  width:140px;
-  height:140px;
-  border-radius:50%;
-  object-fit:cover;
-  border:2px solid #00ff9d;
+  width:140px;height:140px;border-radius:50%;
+  object-fit:cover;border:2px solid #00ff9d;
   box-shadow:0 0 12px #00ff9d;
-  transition:0.3s;
 }
 
-.foto img:active{
-  transform:scale(1.08);
-}
+.nome{margin-top:15px;font-size:26px;}
 
-.nome{
-  margin-top:15px;
-  font-size:26px;
-}
-
-.user{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:6px;
-  margin-top:5px;
-}
-
-.verificado{
-  width:16px;
-  height:16px;
-}
+.user{display:flex;justify-content:center;gap:6px;margin-top:5px;}
 
 .code{
   margin-top:20px;
@@ -89,12 +62,7 @@ body{
   min-height:70px;
 }
 
-.botoes{
-  margin-top:20px;
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
+.botoes{margin-top:20px;display:flex;flex-direction:column;gap:12px;}
 
 .botao{
   padding:12px;
@@ -109,53 +77,38 @@ body{
   background:#00ff9d;
   color:#0f2027;
   transform:scale(1.05);
-  box-shadow:0 0 15px #00ff9d;
 }
 
-footer{
-  margin-top:20px;
-  font-size:12px;
-  opacity:0.7;
+footer{margin-top:20px;font-size:12px;opacity:0.7;}
+
+.language-menu{
+  position:fixed;
+  top:15px;
+  right:20px;
 }
 
-/* botão idioma */
-.language-menu {
-  position: fixed;
-  top: 15px;
-  right: 20px;
-  z-index: 10;
-}
-
-#lang-btn {
+#lang-btn{
   background:#00ff9d;
   border:none;
   padding:8px 12px;
   border-radius:6px;
   cursor:pointer;
-  font-size:16px;
-  color:#0f2027;
 }
 
-.lang-options {
+.lang-options{
   display:none;
   position:absolute;
   right:0;
   top:40px;
-  background:rgba(0,0,0,0.8);
+  background:#000;
   border-radius:6px;
-  overflow:hidden;
 }
 
-.lang-options span {
+.lang-options span{
   display:block;
-  padding:8px 12px;
+  padding:8px;
   cursor:pointer;
   color:#00ff9d;
-}
-
-.lang-options span:hover {
-  background:#00ff9d;
-  color:#0f2027;
 }
 </style>
 </head>
@@ -175,7 +128,6 @@ footer{
 </div>
 
 <div class="container">
-
   <div class="foto">
     <img src="foto.jpg">
   </div>
@@ -189,81 +141,58 @@ footer{
   <div class="code" id="terminal"></div>
 
   <div class="botoes">
-    <a class="botao" id="contato">CONTATO</a>
-    <a class="botao" id="email">E-MAIL</a>
-    <a class="botao" id="curriculo" target="_blank">CURRÍCULO</a>
+    <a class="botao" id="contato"></a>
+    <a class="botao" id="email"></a>
+    <a class="botao" id="curriculo" target="_blank"></a>
   </div>
 
   <footer id="footer"></footer>
-
 </div>
 
 <script>
 const textos = {
-  pt: {
-    nome:"Gustavo Antunes",
-    usuario:"@eo._.guh",
-    terminal:`while(coffee!="empty"){ code(); }`,
-    contato:"CONTATO",
-    email:"E-MAIL",
-    curriculo:"CURRÍCULO",
-    footer:"feito com ☕ e código",
-    linkContato:"https://wa.me/5549999862424",
-    linkEmail:"mailto:gus.tavooficial.mid1@gmail.com",
-    linkCurriculo:"#"
-  },
-  en: {
-    nome:"Gustavo Antunes",
-    usuario:"@eo._.guh",
-    terminal:`while(coffee!="empty"){ code(); }`,
-    contato:"CONTACT",
-    email:"E-MAIL",
-    curriculo:"RESUME",
-    footer:"made with ☕ and code",
-    linkContato:"https://wa.me/5549999862424",
-    linkEmail:"mailto:gus.tavooficial.mid1@gmail.com",
-    linkCurriculo:"#"
-  }
+  pt:{nome:"Gustavo Antunes",usuario:"@eo._.guh",terminal:`while(coffee!="empty"){ code(); }`,contato:"CONTATO",email:"E-MAIL",curriculo:"CURRÍCULO",footer:"feito com ☕ e código",linkContato:"https://wa.me/5549999862424",linkEmail:"mailto:gus.tavooficial.mid1@gmail.com",linkCurriculo:"#"},
+  en:{nome:"Gustavo Antunes",usuario:"@eo._.guh",terminal:`while(coffee!="empty"){ code(); }`,contato:"CONTACT",email:"E-MAIL",curriculo:"RESUME",footer:"made with ☕ and code",linkContato:"https://wa.me/5549999862424",linkEmail:"mailto:gus.tavooficial.mid1@gmail.com",linkCurriculo:"#"},
+  es:{nome:"Gustavo Antunes",usuario:"@eo._.guh",terminal:`while(cafe!="vacio"){ codigo(); }`,contato:"CONTACTO",email:"CORREO",curriculo:"CURRÍCULO",footer:"hecho con ☕ y código",linkContato:"https://wa.me/5549999862424",linkEmail:"mailto:gus.tavooficial.mid1@gmail.com",linkCurriculo:"#"},
+  it:{nome:"Gustavo Antunes",usuario:"@eo._.guh",terminal:`while(caffe!="vuoto"){ codice(); }`,contato:"CONTATTO",email:"E-MAIL",curriculo:"CURRICULUM",footer:"fatto con ☕ e codice",linkContato:"https://wa.me/5549999862424",linkEmail:"mailto:gus.tavooficial.mid1@gmail.com",linkCurriculo:"#"}
 };
 
-function digitar(texto){
-  const el = document.getElementById("terminal");
+function digitar(t){
+  let i=0,el=terminal;
   el.innerHTML="";
-  let i=0;
-  function t(){
-    if(i<texto.length){
-      el.innerHTML+=texto[i++];
-      setTimeout(t,30);
+  (function w(){
+    if(i<t.length){
+      el.innerHTML+=t[i++];
+      setTimeout(w,30);
     }
-  }
-  t();
+  })();
 }
 
 function atualizarIdioma(lang){
-  const t = textos[lang];
+  const t = textos[lang] || textos["pt"]; // proteção
 
-  nome.innerText = t.nome;
-  usuario.innerText = t.usuario;
-  contato.innerText = t.contato;
-  email.innerText = t.email;
-  curriculo.innerText = t.curriculo;
-  footer.innerText = t.footer;
+  nome.innerText=t.nome;
+  usuario.innerText=t.usuario;
+  contato.innerText=t.contato;
+  email.innerText=t.email;
+  curriculo.innerText=t.curriculo;
+  footer.innerText=t.footer;
 
-  contato.href = t.linkContato;
-  email.href = t.linkEmail;
-  curriculo.href = t.linkCurriculo;
+  contato.href=t.linkContato;
+  email.href=t.linkEmail;
+  curriculo.href=t.linkCurriculo;
 
-  document.getElementById("lang-btn").innerText = lang.toUpperCase();
+  document.getElementById("lang-btn").innerText=lang.toUpperCase();
 
   digitar(t.terminal);
 
   localStorage.setItem("lang",lang);
 }
 
-const langBtn = document.getElementById("lang-btn");
-const menu = document.querySelector(".lang-options");
+const btn=document.getElementById("lang-btn");
+const menu=document.querySelector(".lang-options");
 
-langBtn.onclick = ()=> menu.style.display = menu.style.display=="block"?"none":"block";
+btn.onclick=()=>menu.style.display=menu.style.display=="block"?"none":"block";
 
 document.querySelectorAll(".lang-options span").forEach(el=>{
   el.onclick=()=>{
@@ -272,27 +201,21 @@ document.querySelectorAll(".lang-options span").forEach(el=>{
   }
 });
 
-window.onclick = e=>{
-  if(!langBtn.contains(e.target) && !menu.contains(e.target)){
+window.onclick=e=>{
+  if(!btn.contains(e.target)&&!menu.contains(e.target)){
     menu.style.display="none";
   }
 };
 
-const langSalvo = localStorage.getItem("lang") || "pt";
-atualizarIdioma(langSalvo);
+atualizarIdioma(localStorage.getItem("lang")||"pt");
 
 /* partículas */
-const c=document.getElementById("particles");
-const ctx=c.getContext("2d");
-c.width=innerWidth;
-c.height=innerHeight;
+const c=particles,ctx=c.getContext("2d");
+c.width=innerWidth;c.height=innerHeight;
 
-let p=[];
-for(let i=0;i<60;i++){
-  p.push({x:Math.random()*c.width,y:Math.random()*c.height});
-}
+let p=[...Array(60)].map(()=>({x:Math.random()*c.width,y:Math.random()*c.height}));
 
-function draw(){
+(function draw(){
   ctx.clearRect(0,0,c.width,c.height);
   p.forEach(pt=>{
     ctx.beginPath();
@@ -300,11 +223,10 @@ function draw(){
     ctx.fillStyle="#00ff9d";
     ctx.fill();
     pt.y+=0.5;
-    if(pt.y>c.height) pt.y=0;
+    if(pt.y>c.height)pt.y=0;
   });
   requestAnimationFrame(draw);
-}
-draw();
+})();
 </script>
 
 </body>
